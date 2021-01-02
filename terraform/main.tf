@@ -37,9 +37,7 @@ resource "aws_iam_policy" "celtics_sentinel_twitter_bot_policy" {
   "Statement": [
     {
       "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
+        "logs:CreateLogGroup"
       ],
       "Resource": "arn:aws:logs:us-east-1:527169047602:/aws/lambda/celtics_sentinel_twitter_bot",
       "Effect": "Allow"
@@ -74,6 +72,7 @@ resource "aws_lambda_function" "celtics_sentinel_twitter_bot_lambda" {
   function_name = "celtics_sentinel_twitter_bot"
   role          = aws_iam_role.celtics_sentinel_twitter_bot_role.arn
   handler       = "bot.handler"
+  timeout = 15
 
   source_code_hash = filebase64sha256("../lambda.zip")
 
