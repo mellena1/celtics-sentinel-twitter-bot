@@ -37,17 +37,10 @@ resource "aws_iam_policy" "celtics_sentinel_twitter_bot_policy" {
   "Statement": [
     {
       "Action": [
-        "logs:CreateLogGroup"
-      ],
-      "Resource": "arn:aws:logs:us-east-1:527169047602:/aws/lambda/celtics_sentinel_twitter_bot",
-      "Effect": "Allow"
-    },
-    {
-      "Action": [
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ],
-      "Resource": "arn:aws:logs:us-east-1:527169047602:/aws/lambda/celtics_sentinel_twitter_bot:*",
+      "Resource": "arn:aws:logs:us-east-1:527169047602:log-group:/aws/lambda/celtics_sentinel_twitter_bot:*",
       "Effect": "Allow"
     },
     {
@@ -83,6 +76,11 @@ resource "aws_lambda_function" "celtics_sentinel_twitter_bot_lambda" {
       ENVIRONMENT = "lambda"
     }
   }
+}
+
+resource "aws_cloudwatch_log_group" "lambda_log_group" {
+  name = "/aws/lambda/celtics_sentinel_twitter_bot"
+  retention_in_days = 3
 }
 
 resource "aws_cloudwatch_event_rule" "every_fifteen_minutes" {
