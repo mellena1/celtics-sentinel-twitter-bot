@@ -21,7 +21,7 @@ else:
     )
 
 
-BLOG_URL = "https://www.celticscentral.blogspot.com.celticscentral.com"
+BLOG_URL = "https://www.celticssentinel.com"
 ATOM_FEED = f"{BLOG_URL}/feeds/posts/default"
 
 
