@@ -15,15 +15,15 @@ steps:
   - cd package && zip -r ../lambda.zip * && cd ..
   - rm -rf package
 
-- name: Terraform-Apply
-  image: hashicorp/terraform:0.14.3
-  commands:
-  - cd terraform
-  - terraform init
-  - terraform apply -auto-approve
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_access_key_id
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret_access_key
-    AWS_DEFAULT_REGION: us-east-1
+# - name: Terraform-Apply
+#   image: hashicorp/terraform:0.14.3
+#   commands:
+#   - cd terraform
+#   - terraform init
+#   - terraform apply -auto-approve
+#   environment:
+#     AWS_ACCESS_KEY_ID:
+#       from_secret: aws_access_key_id
+#     AWS_SECRET_ACCESS_KEY:
+#       from_secret: aws_secret_access_key
+#     AWS_DEFAULT_REGION: us-east-1
